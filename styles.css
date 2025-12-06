@@ -572,7 +572,6 @@ main section h2::after {
   .about-visual {
     max-width: 340px;
     margin: 0 auto;
-    padding-top: 110%;
   }
 }
 
