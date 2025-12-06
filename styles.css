@@ -8,6 +8,15 @@
   --transition-base: 200ms ease;
 }
 
+[data-theme="dark"] {
+  --bg-primary: #2a4158;
+  --bg-light: #1e2a38;
+  --bg-white: #162030;
+  --text-dark: #e8f1ff;
+  --text-muted: rgba(232, 241, 255, 0.75);
+  --shadow-soft: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -15,9 +24,10 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #ffffff;
+  background: var(--bg-white);
   color: var(--text-dark);
   scroll-behavior: smooth;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 a {
@@ -42,6 +52,12 @@ a:focus {
   backdrop-filter: blur(14px);
   background: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid rgba(15, 27, 42, 0.08);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+[data-theme="dark"] .site-header {
+  background: rgba(22, 32, 48, 0.9);
+  border-bottom: 1px solid rgba(232, 241, 255, 0.08);
 }
 
 .nav-container {
@@ -77,6 +93,64 @@ nav a {
   font-weight: 500;
 }
 
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  margin-left: 1.8rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color var(--transition-base), transform var(--transition-base);
+}
+
+.theme-toggle:hover {
+  background-color: rgba(15, 27, 42, 0.1);
+  transform: scale(1.1);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background-color: rgba(232, 241, 255, 0.1);
+}
+
+.theme-toggle-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.sun-icon {
+  color: #f59e0b;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.moon-icon {
+  color: #6366f1;
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+
+[data-theme="dark"] .sun-icon {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+[data-theme="dark"] .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
 .hero {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-light) 100%);
@@ -85,6 +159,7 @@ nav a {
   text-align: center;
   position: relative;
   overflow: hidden;
+  transition: background var(--transition-base);
 }
 
 .hero::before {
@@ -96,6 +171,11 @@ nav a {
   height: 46rem;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
   filter: blur(4px);
+  transition: opacity var(--transition-base);
+}
+
+[data-theme="dark"] .hero::before {
+  opacity: 0.3;
 }
 
 .hero::after {
@@ -107,13 +187,19 @@ nav a {
   height: 32rem;
   background: radial-gradient(circle, rgba(15, 27, 42, 0.18) 0%, rgba(15, 27, 42, 0) 68%);
   opacity: 0.45;
+  transition: opacity var(--transition-base);
+}
+
+[data-theme="dark"] .hero::after {
+  opacity: 0.7;
 }
 
 .hero-content {
   padding: 6rem 0;
-  color: #0a1724;
+  color: var(--text-dark);
   position: relative;
   z-index: 1;
+  transition: color var(--transition-base);
 }
 
 .hero-badge {
@@ -129,6 +215,12 @@ nav a {
   text-transform: uppercase;
   margin-bottom: 1.4rem;
   box-shadow: 0 14px 28px rgba(15, 27, 42, 0.12);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+[data-theme="dark"] .hero-badge {
+  background: rgba(22, 32, 48, 0.75);
+  color: rgba(232, 241, 255, 0.7);
 }
 
 .hero h1 {
@@ -306,7 +398,8 @@ main section h2::after {
 }
 
 .work {
-  background: #ffffff;
+  background: var(--bg-white);
+  transition: background-color var(--transition-base);
 }
 
 .work-grid {
@@ -385,10 +478,17 @@ main section h2::after {
   border-radius: 999px;
   border: 1px solid rgba(15, 27, 42, 0.16);
   box-shadow: 0 12px 24px rgba(15, 27, 42, 0.08);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base), background-color var(--transition-base);
   background: #ffffff;
   font-weight: 500;
   cursor: pointer;
+}
+
+[data-theme="dark"] .contact-links a,
+[data-theme="dark"] .contact-links button {
+  background: var(--bg-white);
+  border-color: rgba(232, 241, 255, 0.16);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .contact-links a:hover,
@@ -396,6 +496,12 @@ main section h2::after {
   transform: translateY(-4px);
   box-shadow: 0 24px 36px rgba(15, 27, 42, 0.16);
   border-color: rgba(15, 27, 42, 0.3);
+}
+
+[data-theme="dark"] .contact-links a:hover,
+[data-theme="dark"] .contact-links button:hover {
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.25);
+  border-color: rgba(232, 241, 255, 0.3);
 }
 
 .contact-links button {
@@ -418,6 +524,13 @@ main section h2::after {
   width: min(320px, 80vw);
   text-align: center;
   border: 1px solid rgba(15, 27, 42, 0.08);
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+[data-theme="dark"] .contact-card {
+  background: var(--bg-white);
+  border-color: rgba(232, 241, 255, 0.08);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
 }
 
 .contact-card img {
@@ -449,6 +562,11 @@ main section h2::after {
 
 .thumbnails {
   background: linear-gradient(140deg, rgba(134, 180, 216, 0.12), rgba(214, 230, 243, 0.24));
+  transition: background var(--transition-base);
+}
+
+[data-theme="dark"] .thumbnails {
+  background: linear-gradient(140deg, rgba(42, 65, 88, 0.12), rgba(30, 42, 56, 0.24));
 }
 
 .thumbnails h2 {
