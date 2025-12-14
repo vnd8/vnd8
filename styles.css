@@ -331,6 +331,11 @@ section {
   color: rgba(15, 27, 42, 0.6);
   display: inline-block;
   margin-bottom: 0.9rem;
+  transition: color var(--transition-base);
+}
+
+[data-theme="dark"] .toolkit-title {
+  color: rgba(232, 241, 255, 0.6);
 }
 
 .toolkit ul {
@@ -385,6 +390,11 @@ main section h2::after {
   height: 2px;
   border-radius: 999px;
   background: rgba(15, 27, 42, 0.35);
+  transition: background-color var(--transition-base);
+}
+
+[data-theme="dark"] main section h2::after {
+  background: rgba(232, 241, 255, 0.35);
 }
 
 .work h2,
